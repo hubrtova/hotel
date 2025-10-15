@@ -5,7 +5,6 @@ import com.sun.beans.introspect.PropertyInfo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Rezervace {
     private Pokoj pokoj;
@@ -13,7 +12,7 @@ public class Rezervace {
     private LocalDate datumDo;
     private TypPobytu typPobytu;
     private Host host;
-    private List ostatniHoste = new ArrayList<Host>();
+    private final ArrayList<Host> ostatniHoste = new ArrayList<>();
 
     public Rezervace(Pokoj pokoj, LocalDate datumOd, LocalDate datumDo, TypPobytu typPobytu, Host host) {
         this.pokoj = pokoj;
@@ -67,14 +66,6 @@ public class Rezervace {
         this.host = host;
     }
 
-    public List getOstatniHoste() {
-        return ostatniHoste;
-    }
-
-    public void setOstatniHoste(List ostatniHoste) {
-        this.ostatniHoste = ostatniHoste;
-    }
-
     public void addHost(Host host) {
         ostatniHoste.add(host);
     }
@@ -83,8 +74,8 @@ public class Rezervace {
         ostatniHoste.remove(host);
     }
 
-    public List<Host> getHoste() {
-        return new ArrayList<Host>(ostatniHoste);
+    public ArrayList<Host> getHoste() {
+        return new ArrayList<>(ostatniHoste);
     }
 
     public int getPocetHostu() {
@@ -100,7 +91,7 @@ public class Rezervace {
 
 
     public String getRezervace() {
-        return host.getHost() + "si rezervoval pokoj " + pokoj.getCisloPokoje() + getDatumOdDoCZ();
+        return host.getHost() + " si rezervoval/a pokoj číslo " + pokoj.getCisloPokoje() + " " + getDatumOdDoCZ();
     }
 }
 

@@ -54,6 +54,6 @@ public class Host {
     }
 
     public String getHost() {
-        return getJmeno() + " " + getPrijmeni() + " narozen: " + getDatumNarozeniCZ();
+        return getJmeno() + " " + getPrijmeni() + " narozen/a: " + getDatumNarozeniCZ();
     }
 }

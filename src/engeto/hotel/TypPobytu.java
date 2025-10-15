@@ -10,7 +10,11 @@ public enum TypPobytu {
     PRAC("pracovní"),
     REKRE("rekreační");
 
-     public PropertyInfo.Name getDescription() {
+
+    TypPobytu(String pracovní) {
+    }
+
+    public PropertyInfo.Name getDescription() {
         return description;
     }
 
