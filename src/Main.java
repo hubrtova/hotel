@@ -3,10 +3,8 @@ import engeto.hotel.Pokoj;
 import engeto.hotel.Rezervace;
 import engeto.hotel.TypPobytu;
 
-import java.sql.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,7 +24,7 @@ public class Main {
         Rezervace rezervace2 = new Rezervace(pokoj3,LocalDate.of(2021,9,3),LocalDate.of(2021,9,14),TypPobytu.REKRE,host1);
         rezervace2.addHost(host2);
 
-        List seznamRezervaci = new ArrayList<Rezervace>();
+        ArrayList<Rezervace> seznamRezervaci = new ArrayList<>();
         seznamRezervaci.add(rezervace1);
         seznamRezervaci.add(rezervace2);
 
