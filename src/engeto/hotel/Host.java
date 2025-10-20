@@ -47,13 +47,12 @@ public class Host {
         this.datumNarozeni = datumNarozeni;
     }
 
-    public String getDatumNarozeniCZ() {
-        DateTimeFormatter formatCZ = DateTimeFormatter.ofPattern("d.M.yyyy");
-        String datumCZ = getDatumNarozeni().format(formatCZ);
-        return datumCZ;
+    @Override
+    public String toString() {
+        String narozen;
+        if (getDatumNarozeni() != LocalDate.MIN) {narozen = " narozen/a: " + pompom.datumCZ(getDatumNarozeni());}
+        else {narozen = "";}
+        return getJmeno() + " " + getPrijmeni() + narozen;
     }
 
-    public String getHost() {
-        return getJmeno() + " " + getPrijmeni() + " narozen/a: " + getDatumNarozeniCZ();
-    }
 }

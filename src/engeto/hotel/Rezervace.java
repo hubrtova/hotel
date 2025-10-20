@@ -2,9 +2,11 @@ package engeto.hotel;
 
 import com.sun.beans.introspect.PropertyInfo;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Rezervace {
     private Pokoj pokoj;
@@ -12,7 +14,7 @@ public class Rezervace {
     private LocalDate datumDo;
     private TypPobytu typPobytu;
     private Host host;
-    private final ArrayList<Host> ostatniHoste = new ArrayList<>();
+    private List<Host> ostatniHoste = new ArrayList<>();
 
     public Rezervace(Pokoj pokoj, LocalDate datumOd, LocalDate datumDo, TypPobytu typPobytu, Host host) {
         this.pokoj = pokoj;
@@ -23,7 +25,7 @@ public class Rezervace {
     }
 
     public Rezervace(Pokoj pokoj, Host host) {
-        this(pokoj,LocalDate.now(),LocalDate.now().plusDays(6),TypPobytu.REKRE,host);
+        this(pokoj,LocalDate.now(),LocalDate.now().plusDays(6),TypPobytu.REKREACNI,host);
     }
 
     public Pokoj getPokoj() {
@@ -50,9 +52,7 @@ public class Rezervace {
         this.datumDo = datumDo;
     }
 
-    public Enum<PropertyInfo.Name> getTypPobytu() {
-        return typPobytu.getDescription();
-    }
+    public TypPobytu getTypPobytu() { return typPobytu; }
 
     public void setTypPobytu(TypPobytu typPobytu) {
         this.typPobytu = typPobytu;
@@ -66,15 +66,15 @@ public class Rezervace {
         this.host = host;
     }
 
-    public void addHost(Host host) {
+    public void addOstatniHost(Host host) {
         ostatniHoste.add(host);
     }
 
-    public void removeHost(Host host) {
+    public void removeOstatniHost(Host host) {
         ostatniHoste.remove(host);
     }
 
-    public ArrayList<Host> getHoste() {
+    public List<Host> getHoste() {
         return new ArrayList<>(ostatniHoste);
     }
 
@@ -89,9 +89,18 @@ public class Rezervace {
         return "od " + datumOdCZ + " do " + datumDoCZ;
     }
 
+    @Override
+    public String toString() {
+        return host.toString() + " si rezervoval/a pokoj číslo " + pokoj.getCisloPokoje() + " od " + pompom.datumCZ(datumOd) + " do " + pompom.datumCZ(datumDo);
+    }
 
-    public String getRezervace() {
-        return host.getHost() + " si rezervoval/a pokoj číslo " + pokoj.getCisloPokoje() + " " + getDatumOdDoCZ();
+
+    public long getPocetNoci(){
+        return getDatumOd().until(getDatumOd()).getDays();
+    }
+
+    public BigDecimal getCenaRezervace(){
+        return pokoj.getCenaPokojDen().multiply(BigDecimal.valueOf(getPocetNoci()));
     }
 }
 

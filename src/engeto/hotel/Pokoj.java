@@ -1,13 +1,15 @@
 package engeto.hotel;
 
+import java.math.BigDecimal;
+
 public class Pokoj {
     private int cisloPokoje;
     private int pocetLuzek;
     private boolean balkon;
     private boolean vyhledNaMore;
-    private double cenaPokojDen;
+    private BigDecimal cenaPokojDen;
 
-    public Pokoj(int cisloPokoje, int pocetLuzek, boolean balkon, boolean vyhledNaMore, double cenaPokojDen) {
+    public Pokoj(int cisloPokoje, int pocetLuzek, boolean balkon, boolean vyhledNaMore, BigDecimal cenaPokojDen) {
         this.cisloPokoje = cisloPokoje;
         this.pocetLuzek = pocetLuzek;
         this.balkon = balkon;
@@ -17,15 +19,7 @@ public class Pokoj {
 
 
     public Pokoj(int cisloPokoje, int pocetLuzek, boolean balkon, boolean vyhledNaMore) {
-           this(cisloPokoje,pocetLuzek,balkon,vyhledNaMore,1000);
-    }
-
-    public Pokoj(int cisloPokoje, int pocetLuzek) {
-          this(cisloPokoje,pocetLuzek,false,false,1000);
-    }
-
-    public Pokoj(int cisloPokoje, int pocetLuzek,double cenaPokojDen) {
-        this(cisloPokoje,pocetLuzek,false,false,cenaPokojDen);
+        this(cisloPokoje,pocetLuzek,balkon,vyhledNaMore,pompom.celkovaCenaPokoje(balkon,vyhledNaMore));
     }
 
     public int getCisloPokoje() {
@@ -60,11 +54,11 @@ public class Pokoj {
         this.vyhledNaMore = vyhledNaMore;
     }
 
-    public double getCenaPokojDen() {
+    public BigDecimal getCenaPokojDen() {
         return cenaPokojDen;
     }
 
-    public void setCenaPokojDen(double cenaPokojDen) {
+    public void setCenaPokojDen(BigDecimal cenaPokojDen) {
         this.cenaPokojDen = cenaPokojDen;
     }
 }
